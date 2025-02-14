@@ -20,11 +20,21 @@ p {
     color: black;
     width: 100px;
     height: 35px;
+    padding: 2em;
     border: 1px solid black;
-    background-color: red;
-    text-decoration: none;
+    background-color: grey;
     display: flex;
+    text-decoration: none;
     align-items: center;
     position: relative;
-    
+    overflow: hidden;
+}
+
+.menu-items{
+    display: flex;
+}
+
+/*Removes dot before listed items*/
+li{
+    display: flex;
 }

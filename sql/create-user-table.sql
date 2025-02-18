@@ -8,19 +8,19 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema mydb
 -- -----------------------------------------------------
 -- 
--- Schema steelfire
+-- Schema workit
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema steelfire
+-- Schema workit
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `steelfire` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-USE `steelfire` ;
+CREATE SCHEMA IF NOT EXISTS `workit` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE `workit` ;
 
 -- -----------------------------------------------------
--- Table `steelfire`.`exercises`
+-- Table `workit`.`exercises`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `steelfire`.`exercises` (
+CREATE TABLE IF NOT EXISTS `workit`.`exercises` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `exercise_name` VARCHAR(50) NOT NULL,
   `targeted_muscle` VARCHAR(50) NOT NULL,
@@ -31,9 +31,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `steelfire`.`user`
+-- Table `workit`.`user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `steelfire`.`user` (
+CREATE TABLE IF NOT EXISTS `workit`.`user` (
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
@@ -47,9 +47,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `steelfire`.`workouts`
+-- Table `workit`.`workouts`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `steelfire`.`workouts` (
+CREATE TABLE IF NOT EXISTS `workit`.`workouts` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `workout_day` VARCHAR(50) NOT NULL,
   `workout_duration` INT NOT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `steelfire`.`workouts` (
   INDEX `fk_workouts_user1_idx` (`user_user_id` ASC) VISIBLE,
   CONSTRAINT `fk_workouts_user1`
     FOREIGN KEY (`user_user_id`)
-    REFERENCES `steelfire`.`user` (`user_id`)
+    REFERENCES `workit`.`user` (`user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -67,9 +67,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `steelfire`.`sets`
+-- Table `workit`.`sets`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `steelfire`.`sets` (
+CREATE TABLE IF NOT EXISTS `workit`.`sets` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `weight` DECIMAL(5,2) NULL DEFAULT NULL,
   `reps` ENUM('reps', 'duration') NULL DEFAULT NULL,
@@ -80,12 +80,12 @@ CREATE TABLE IF NOT EXISTS `steelfire`.`sets` (
   INDEX `fk_sets_workouts1_idx` (`workouts_id` ASC) VISIBLE,
   CONSTRAINT `fk_sets_exercises1`
     FOREIGN KEY (`exercises_id`)
-    REFERENCES `steelfire`.`exercises` (`id`)
+    REFERENCES `workit`.`exercises` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_sets_workouts1`
     FOREIGN KEY (`workouts_id`)
-    REFERENCES `steelfire`.`workouts` (`id`)
+    REFERENCES `workit`.`workouts` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
